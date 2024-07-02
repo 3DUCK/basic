@@ -11,6 +11,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 public class HomeController {
 
+    private int count;
+
+    public HomeController() {
+        count = -1;
+    }
+
     // @GetMapping("/home/main") 의미
     // 개발자가 스프링부트에게 말한다
     // 만약에 /home/main 이런 요청이 들어 오면 아래 메서드를 실행해줘
@@ -34,6 +40,13 @@ public class HomeController {
     @ResponseBody
     public String showHome3() {
         return "스프링부트는 획기적이다.";
+    }
+
+    @GetMapping("/home/increase")
+    @ResponseBody
+    public int showIncrease() {
+        count++;
+        return count;
     }
 
 }
