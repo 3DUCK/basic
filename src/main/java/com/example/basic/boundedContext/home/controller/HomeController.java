@@ -1,5 +1,7 @@
 package com.example.basic.boundedContext.home.controller;
 
+import com.example.basic.boundedContext.member.entity.Member;
+import com.example.basic.boundedContext.member.service.MemberService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -25,10 +27,15 @@ public class HomeController {
 
     private List<Person> people;
 
+    private MemberService memberService;
+
     public HomeController() {
         count = -1;
         people = new ArrayList<>();
+
+        memberService = new MemberService();
     }
+
 
     // @GetMapping("/home/main") 의미
     // 개발자가 스프링부트에게 말한다
@@ -220,6 +227,13 @@ public class HomeController {
     public void showRegAndResp(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         int age = Integer.parseInt(req.getParameter("age"));
         resp.getWriter().append("Hello");
+    }
+
+
+    @GetMapping("home/user1")
+    @ResponseBody
+    public Member showUer1() {
+        return memberService.findByUserName("user1");
     }
 
 }
