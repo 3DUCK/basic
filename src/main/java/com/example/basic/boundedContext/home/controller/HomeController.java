@@ -1,4 +1,4 @@
-package com.example.basic;
+package com.example.basic.boundedContext.home.controller;
 
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
