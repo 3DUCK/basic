@@ -15,8 +15,19 @@ public class RsData {
 
     private final String resultCode;
     private final String msg;
+    private final Object data;
 
+    // 메소드 오버로딩
     public static RsData of(String resultCode, String msg) {
-        return new RsData(resultCode, msg);
+        return of(resultCode, msg, null);
+    }
+
+    public static RsData of(String resultCode, String msg, Object data) {
+        return new RsData(resultCode, msg, data);
+    }
+
+    // 로그인 성공 여부
+    public boolean isSuccess() {
+        return resultCode.startsWith("S-");
     }
 }

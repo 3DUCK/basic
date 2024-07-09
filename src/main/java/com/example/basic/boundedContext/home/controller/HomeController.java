@@ -21,7 +21,6 @@ import java.util.*;
 // 개발자가 스프링부트에게 말한다
 // 아래 있는 Homecontroller는 컨트롤러이다.
 @Controller
-
 public class HomeController {
 
     private int count;
@@ -205,21 +204,21 @@ public class HomeController {
 
     @GetMapping("/home/cookie/increas")
     @ResponseBody
-    public int showCookieIncrease(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    public long showCookieIncrease(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         //resp.addCookie(new Cookie("age", "11"));
-        int countInCookie = 0;
+        long countInCookie = 0;
 
         if(req.getCookies() != null){
 
             countInCookie = Arrays.stream(req.getCookies())
                     .filter(cookie -> cookie.getName().equals("count"))
                     .map(cookie -> cookie.getValue())
-                    .mapToInt(Integer::parseInt)
+                    .mapToLong(Long::parseLong)
                     .findFirst()
                     .orElse(0);
         }
 
-        int newCountInCookie = countInCookie + 1;
+        long newCountInCookie = countInCookie + 1;
 
         resp.addCookie(new Cookie("count", newCountInCookie + ""));
 
