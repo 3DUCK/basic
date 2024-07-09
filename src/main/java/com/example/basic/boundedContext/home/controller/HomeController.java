@@ -29,12 +29,15 @@ public class HomeController {
     private List<Person> people;
 
     // 필드 주입
-    @Autowired
-    private MemberService memberService;
+    // 필드 주입 보다는 생성자 주입이 유지 보수 하기에 좋다 따라서 웬만하면 생성자 주입을 사용하자
+    // @Autowired
+    private final MemberService memberService;
 
-    public HomeController() {
+    public HomeController(MemberService memberService) {
         count = -1;
         people = new ArrayList<>();
+
+        this.memberService = memberService;
     }
 
 

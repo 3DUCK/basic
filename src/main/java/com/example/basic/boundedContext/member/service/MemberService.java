@@ -3,6 +3,7 @@ package com.example.basic.boundedContext.member.service;
 import com.example.basic.boundedContext.base.reData.RsData;
 import com.example.basic.boundedContext.member.entity.Member;
 import com.example.basic.boundedContext.member.repository.MemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -14,8 +15,10 @@ public class MemberService {
 
     private final MemberRepository memberRepository;
 
-    public MemberService() {
-        memberRepository = new MemberRepository();
+    // @Autowired 는 생략 가능
+    @Autowired
+    public MemberService(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
     }
 
     public RsData tryLogin(String username, String password) {
